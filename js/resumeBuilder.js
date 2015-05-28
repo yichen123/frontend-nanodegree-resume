@@ -4,7 +4,10 @@ var bio = {
 	"role": "fresher web developer",
 	"contactInfo": 
 	{
-		"email": "cheny330@hotmail.com"
+		"mobile": "000-0000-0000",
+		"email": "cheny330@hotmail.com",
+		"github": "yichen123",
+		"location": "Beijing, China"
 	},
 	"pic": "images/fry.jpg",
 	"message": "Welcome to my site!",
@@ -16,27 +19,63 @@ var bio = {
 	]
 }
 
-// var formattedName = HTMLheaderName.replace("%data%", bio.name);
-// var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-// var formattedcontact = HTMLcontactGeneric.replace("%data%", bio.contactInfo);
-// var formattedemail = HTMLemail.replace("%data%", bio.contactInfo.email);
-// var formattedbioPic = HTMLbioPic.replace("%data%", bio.pic);
-// var formattedmsg = HTMLwelcomeMsg.replace("%data%", bio.message);
-// var formattedskills = HTMLskills.replace("%data%", bio.skills);
+var formattedName = HTMLheaderName.replace("%data%", bio.name);
+var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+//var formattedcontact = HTMLcontactGeneric.replace("%data%", "Contact Info");
+var formattedMobile = HTMLmobile.replace("%data%", bio.contactInfo.mobile);
+var formattedEmail = HTMLemail.replace("%data%", bio.contactInfo.email);
+var formattedGithub = HTMLgithub.replace("%data%", bio.contactInfo.github);
+var formattedLocation = HTMLlocation.replace("%data%", bio.contactInfo.location);
+var formattedBioPic = HTMLbioPic.replace("%data%", bio.pic);
+var formattedMsg = HTMLwelcomeMsg.replace("%data%", bio.message);
 
-// $("#header").prepend(formattedRole);
-// $("#header").prepend(formattedName);
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
+$("#topContacts").append(formattedMobile);
+$("#topContacts").append(formattedEmail);
+$("#topContacts").append(formattedGithub);
+$("#topContacts").append(formattedLocation);
+$("#header").append(formattedBioPic);
+$("#header").append(formattedMsg);
 
+if (bio.skills.length > 0) {
+	$("#header").append(HTMLskillsStart);
+	for (var idx = 0; idx < bio.skills.length; idx++) {
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[idx]);
+		$("#skills").append(formattedSkill);
+	}
+}
 
-var work = [
+var works = [
 	{
 		"position": "Board Assistant",
 		"employer": "BeijingKJG",
-		"years": 2,
-		"city": "Beijing"
+		"years": "Dec 2013 - May 2015",
+		"city": "Beijing",
+		"descript": "blablabla"
+	}, 
+	{
+		"position": "freelancer",
+		"employer": "myself",
+		"years": "June 2015 - furture",
+		"city": "Beijing",
+		"descript": "bla bla bla"
 	}
 ]
 
+if (works.length > 0) {
+	for (work in works) {
+		$("#workExperience").append(HTMLworkStart);
+		var formattedWorkPosition = HTMLworkTitle.replace("%data%", works[work].position);
+		var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", works[work].employer);
+		var formattedWorkDates = HTMLworkDates.replace("%data%", works[work].years);
+		var formattedWorkLocation = HTMLworkLocation.replace("%data%", works[work].city);
+		var formattedWorkDescription = HTMLworkDescription.replace("%data%", works[work].descript);
+		$(".work-entry:last").append(formattedWorkEmployer + formattedWorkPosition);
+		$(".work-entry:last").append(formattedWorkDates + formattedWorkLocation);
+		$(".work-entry:last").append(formattedWorkDescription);
+	}
+}
 var education = {
 	"schools": [
 		{
