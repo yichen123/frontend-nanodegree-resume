@@ -1,8 +1,8 @@
-// $("#main").append("Chen YI");	
+// $("#main").append("Chen YI");
 var bio = {
-	"name": "Chen YI",
+	"name": "ChEn Yi",
 	"role": "fresher web developer",
-	"contactInfo": 
+	"contactInfo":
 	{
 		"mobile": "000-0000-0000",
 		"email": "cheny330@hotmail.com",
@@ -11,10 +11,10 @@ var bio = {
 	},
 	"pic": "images/fry.jpg",
 	"message": "Welcome to my site!",
-	"skills": 
+	"skills":
 	[
-		"Maths", 
-		"Python", 
+		"Maths",
+		"Python",
 		"Web Develop"
 	]
 }
@@ -53,7 +53,7 @@ var works = [
 		"years": "Dec 2013 - May 2015",
 		"city": "Beijing",
 		"descript": "blablabla"
-	}, 
+	},
 	{
 		"position": "freelancer",
 		"employer": "myself",
@@ -102,7 +102,7 @@ var education = {
 		},
 		{
 			"web": "udacity",
-			"course": "front end web developer" 
+			"course": "front end web developer"
 		}
 
 	]
@@ -127,5 +127,13 @@ $(document).click(function(loc) {
 });
 
 
+function inName(name) {
+	console.log(name);
+	var names = name.trim().split(" ");
+	console.log(names);
+	var firstName = names[0].slice(0,1).toUpperCase() + names[0].slice(1).toLowerCase();
+	var lastName = names[1].toUpperCase();
+	return firstName + " " + lastName;
+}
 
-
+$("#main").append(internationalizeButton);
