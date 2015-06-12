@@ -1,12 +1,12 @@
 // $("#main").append("Chen YI");
 var bio = {
-    "name": "Chen Yi",
+    "name": "Chen YI",
     "role": "fresher web developer",
     "contactInfo": {
         "mobile": "000-0000-0000",
         "email": "cheny330@hotmail.com",
         "github": "yichen123",
-        "twitter": "yichen123"
+        "twitter": "yichen123",
         "location": "Beijing, China"
     },
     "pic": "images/fry.jpg",
@@ -14,34 +14,50 @@ var bio = {
     "skills": [
         "Maths",
         "Python",
-        "Web Develop"
+        "Web Develope"
     ]
 }
 
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-//var formattedcontact = HTMLcontactGeneric.replace("%data%", "Contact Info");
-var formattedMobile = HTMLmobile.replace("%data%", bio.contactInfo.mobile);
-var formattedEmail = HTMLemail.replace("%data%", bio.contactInfo.email);
-var formattedGithub = HTMLgithub.replace("%data%", bio.contactInfo.github);
-var formattedLocation = HTMLlocation.replace("%data%", bio.contactInfo.location);
-var formattedBioPic = HTMLbioPic.replace("%data%", bio.pic);
-var formattedMsg = HTMLwelcomeMsg.replace("%data%", bio.message);
+function replace(content, target) {
+    /*
+    helper function to replace %data$ with content
+    */
+    var fomatted = target.replace("%data%", content);
+    return fomatted;
+}
 
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-$("#topContacts").append(formattedMobile);
-$("#topContacts").append(formattedEmail);
-$("#topContacts").append(formattedGithub);
-$("#topContacts").append(formattedLocation);
-$("#header").append(formattedBioPic);
-$("#header").append(formattedMsg);
+function displayAppend(content, target, place) {
+    /*
+    helper function to replace and display the content with append
+    */
+    var fomatted = replace(content, target);
+    $(place).append(fomatted);
+}
+
+function displayPrepend(content, target, place) {
+    /*
+    helper function to replace and display the content with prepend
+    */
+    var fomatted = replace(content, target);
+    $(place).prepend(fomatted);
+}
+
+displayPrepend(bio.name, HTMLheaderName, "#header");
+displayPrepend(bio.role, HTMLheaderRole, "#header");
+displayAppend(bio.contactInfo.mobile, HTMLmobile, "#topContacts");
+displayAppend(bio.contactInfo.email, HTMLemail, "#topContacts");
+displayAppend(bio.contactInfo.github, HTMLgithub, "#topContacts");
+displayAppend(bio.contactInfo.twitter, HTMLtwitter, "#topContacts");
+displayAppend(bio.contactInfo.location, HTMLlocation, "#topContacts");
+displayAppend(bio.pic, HTMLbioPic, "#header");
+displayAppend(bio.message, HTMLwelcomeMsg, "#header");
+
 
 if (bio.skills.length > 0) {
     $("#header").append(HTMLskillsStart);
     for (var idx = 0; idx < bio.skills.length; idx++) {
-        var formattedSkill = HTMLskills.replace("%data%", bio.skills[idx]);
-        $("#skills").append(formattedSkill);
+        displayAppend(bio.skills[idx], HTMLskills, "#skills");
+
     }
 }
 
@@ -62,16 +78,17 @@ var works = [{
 if (works.length > 0) {
     for (work in works) {
         $("#workExperience").append(HTMLworkStart);
-        var formattedWorkPosition = HTMLworkTitle.replace("%data%", works[work].position);
-        var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", works[work].employer);
-        var formattedWorkDates = HTMLworkDates.replace("%data%", works[work].years);
-        var formattedWorkLocation = HTMLworkLocation.replace("%data%", works[work].city);
-        var formattedWorkDescription = HTMLworkDescription.replace("%data%", works[work].descript);
+        var formattedWorkPosition = replace(works[work].position, HTMLworkTitle);
+        var formattedWorkEmployer = replace(works[work].employer, HTMLworkEmployer);
+        var formattedWorkDates = replace(works[work].years, HTMLworkDates);
+        var formattedWorkLocation = replace(works[work].city, HTMLworkLocation);
         $(".work-entry:last").append(formattedWorkEmployer + formattedWorkPosition);
         $(".work-entry:last").append(formattedWorkDates + formattedWorkLocation);
-        $(".work-entry:last").append(formattedWorkDescription);
+        displayAppend(works[work].descript, HTMLworkDescription, ".work-entry:last");
     }
 }
+
+
 var education = {
     "schools": [{
         "school": "UON",
@@ -96,6 +113,8 @@ var education = {
 
     ]
 }
+
+
 
 var projects = [{
     "title": "HomePage",
