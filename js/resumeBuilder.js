@@ -42,8 +42,8 @@ function displayPrepend(content, target, place) {
     $(place).prepend(fomatted);
 }
 
-displayPrepend(bio.name, HTMLheaderName, "#header");
 displayPrepend(bio.role, HTMLheaderRole, "#header");
+displayPrepend(bio.name, HTMLheaderName, "#header");
 displayAppend(bio.contactInfo.mobile, HTMLmobile, "#topContacts");
 displayAppend(bio.contactInfo.email, HTMLemail, "#topContacts");
 displayAppend(bio.contactInfo.github, HTMLgithub, "#topContacts");
@@ -94,7 +94,7 @@ var education = {
         "school": "UON",
         "city": "Nottingham",
         "major": "International Business",
-        "graduate": "DEC 2013",
+        "graduate": "2013",
         "degree": "Masters"
     }, {
         "school": "UON",
@@ -104,16 +104,37 @@ var education = {
         "degree": "Masters"
     }],
     "onlineCourses": [{
-            "web": "coursera",
-            "course": "python"
+            "school": "Rice University, Coursera",
+            "course": "python",
+            "date": "2014"
         }, {
-            "web": "udacity",
-            "course": "front end web developer"
+            "school": "Udacity",
+            "course": "front end web developer",
+            "date": "2015"
         }
 
     ]
 }
+if (education.schools.length > 0) {
+    for(school in education.schools) {
+        $("#education").append(HTMLschoolStart);
+        displayAppend(education.schools[school].school, HTMLschoolName, ".education-entry:last");
+        displayAppend(education.schools[school].degree, HTMLschoolDegree, ".education-entry:last");
+        displayAppend(education.schools[school].graduate, HTMLschoolDates, ".education-entry:last");
+        displayAppend(education.schools[school].city, HTMLschoolLocation, ".education-entry:last");
+        displayAppend(education.schools[school].major, HTMLschoolMajor, ".education-entry:last");
+    }
+}
 
+if (education.onlineCourses.length > 0) {
+    $("#education").append(HTMLonlineClasses);
+    for (course in education.onlineCourses) {
+        $("#education").append(HTMLschoolStart);
+        displayAppend(education.onlineCourses[course].course, HTMLonlineTitle, ".education-entry:last");
+        displayAppend(education.onlineCourses[course].school, HTMLonlineSchool, ".education-entry:last");
+        displayAppend(education.onlineCourses[course].date, HTMLonlineDates, ".education-entry:last");
+    }
+}
 
 
 var projects = [{
