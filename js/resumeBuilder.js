@@ -1,23 +1,8 @@
-// $("#main").append("Chen YI");
-var bio = {
-    "name": "Chen YI",
-    "role": "fresher web developer",
-    "contactInfo": {
-        "mobile": "000-0000-0000",
-        "email": "cheny330@hotmail.com",
-        "github": "yichen123",
-        "twitter": "yichen123",
-        "location": "Beijing, China"
-    },
-    "pic": "images/fry.jpg",
-    "message": "Welcome to my site!",
-    "skills": [
-        "Maths",
-        "Python",
-        "Web Develope"
-    ]
-}
+/*
+this is the javascript file
+*/
 
+//Three helper functions
 function replace(content, target) {
     /*
     helper function to replace %data$ with content
@@ -42,85 +27,120 @@ function displayPrepend(content, target, place) {
     $(place).prepend(fomatted);
 }
 
-displayPrepend(bio.role, HTMLheaderRole, "#header");
-displayPrepend(bio.name, HTMLheaderName, "#header");
-displayAppend(bio.contactInfo.mobile, HTMLmobile, "#topContacts");
-displayAppend(bio.contactInfo.email, HTMLemail, "#topContacts");
-displayAppend(bio.contactInfo.github, HTMLgithub, "#topContacts");
-displayAppend(bio.contactInfo.twitter, HTMLtwitter, "#topContacts");
-displayAppend(bio.contactInfo.location, HTMLlocation, "#topContacts");
-displayAppend(bio.pic, HTMLbioPic, "#header");
-displayAppend(bio.message, HTMLwelcomeMsg, "#header");
-
-
-if (bio.skills.length > 0) {
-    $("#header").append(HTMLskillsStart);
-    for (var idx = 0; idx < bio.skills.length; idx++) {
-        displayAppend(bio.skills[idx], HTMLskills, "#skills");
-
-    }
-}
-
-var works = [{
-    "position": "Board Assistant",
-    "employer": "BeijingKJG",
-    "years": "Dec 2013 - May 2015",
-    "city": "Beijing",
-    "descript": "blablabla"
-}, {
-    "position": "freelancer",
-    "employer": "myself",
-    "years": "June 2015 - furture",
-    "city": "Beijing",
-    "descript": "bla bla bla"
-}]
-
-if (works.length > 0) {
-    for (work in works) {
-        $("#workExperience").append(HTMLworkStart);
-        var formattedWorkPosition = replace(works[work].position, HTMLworkTitle);
-        var formattedWorkEmployer = replace(works[work].employer, HTMLworkEmployer);
-        var formattedWorkDates = replace(works[work].years, HTMLworkDates);
-        var formattedWorkLocation = replace(works[work].city, HTMLworkLocation);
-        $(".work-entry:last").append(formattedWorkEmployer + formattedWorkPosition);
-        $(".work-entry:last").append(formattedWorkDates + formattedWorkLocation);
-        displayAppend(works[work].descript, HTMLworkDescription, ".work-entry:last");
+var bio = {
+    /*
+    bio object
+    */
+    "name": "Chen YI",
+    "role": "fresher web developer",
+    "contacts": {
+        "mobile": "000-0000-0000",
+        "email": "cheny330@hotmail.com",
+        "github": "yichen123",
+        "twitter": "yichen123",
+        "location": "Beijing, China"
+    },
+    "pic": "images/fry.jpg",
+    "message": "Welcome to my site!",
+    "skills": [
+        "Maths",
+        "Python",
+        "Web Develope"
+    ],
+    display: function() {
+        displayPrepend(bio.role, HTMLheaderRole, "#header");
+        displayPrepend(bio.name, HTMLheaderName, "#header");
+        displayAppend(bio.contacts.mobile, HTMLmobile, "#topContacts");
+        displayAppend(bio.contacts.email, HTMLemail, "#topContacts");
+        displayAppend(bio.contacts.github, HTMLgithub, "#topContacts");
+        displayAppend(bio.contacts.twitter, HTMLtwitter, "#topContacts");
+        displayAppend(bio.contacts.location, HTMLlocation, "#topContacts");
+        displayAppend(bio.pic, HTMLbioPic, "#header");
+        displayAppend(bio.message, HTMLwelcomeMsg, "#header");
+        if (bio.skills.length > 0) {
+            $("#header").append(HTMLskillsStart);
+            for (var idx = 0; idx < bio.skills.length; idx++) {
+                displayAppend(bio.skills[idx], HTMLskills, "#skills");
+            }
+        }
     }
 }
 
 
-var projects = [{
-    "title": "HomePage",
-    "date": "May, 2015",
-    "description": "I built a homepage to display my projects of the Nanodegree course in this project. I learnt how to use html5 and css to build a basic website framework.",
-    "pic": "images/project1.png"
-}, {
-    "title": "Resume",
-    "date": "June, 2015",
-    "description": "This project is to build this resume that you are looking at. With this project, I learnt the basic of using javascript and jQurry.",
-    "pic": "images/project2.png"
-}]
+var work = {
+    /*
+    work object
+    */
+    jobs: [{
+        "position": "Board Assistant",
+        "employer": "BeijingKJG",
+        "years": "Dec 2013 - May 2015",
+        "location": "Beijing, China",
+        "descript": "blablabla"
+    }, {
+        "position": "freelancer",
+        "employer": "myself",
+        "years": "June 2015 - furture",
+        "location": "Beijing, China",
+        "descript": "bla bla bla"
+    }],
+    display: function(){
+        if (work.jobs.length > 0) {
+            for (job in work.jobs) {
+                $("#workExperience").append(HTMLworkStart);
+                var formattedWorkPosition = replace(work.jobs[job].position, HTMLworkTitle);
+                var formattedWorkEmployer = replace(work.jobs[job].employer, HTMLworkEmployer);
+                var formattedWorkDates = replace(work.jobs[job].years, HTMLworkDates);
+                var formattedWorkLocation = replace(work.jobs[job].location, HTMLworkLocation);
+                $(".work-entry:last").append(formattedWorkEmployer + formattedWorkPosition);
+                $(".work-entry:last").append(formattedWorkDates + formattedWorkLocation);
+                displayAppend(work.jobs[job].descript, HTMLworkDescription, ".work-entry:last");
+            }
+        }
+    }
+}
 
-if (projects.length > 0) {
-    for (project in projects) {
-        $("#projects").append(HTMLprojectStart);
-        displayAppend(projects[project].title, HTMLprojectTitle, ".project-entry:last");
-        displayAppend(projects[project].date, HTMLprojectDates, ".project-entry:last");
-        displayAppend(projects[project].description, HTMLprojectDescription, ".project-entry:last");
-        displayAppend(projects[project].pic, HTMLprojectImage, ".project-entry:last");
+var projects = {
+    /*
+    projects object
+    */
+    projects: [{
+        "title": "HomePage",
+        "date": "May, 2015",
+        "description": "I built a homepage to display my projects of the Nanodegree course in this project. I learnt how to use html5 and css to build a basic website framework.",
+        "pic": "images/project1.png"
+    }, {
+        "title": "Resume",
+        "date": "June, 2015",
+        "description": "This project is to build this resume that you are looking at. With this project, I learnt the basic of using javascript and jQurry.",
+        "pic": "images/project2.png"
+    }],
+    display: function(){
+        for (project in projects.projects) {
+            $("#projects").append(HTMLprojectStart);
+            displayAppend(projects.projects[project].title, HTMLprojectTitle, ".project-entry:last");
+            displayAppend(projects.projects[project].date, HTMLprojectDates, ".project-entry:last");
+            displayAppend(projects.projects[project].description, HTMLprojectDescription, ".project-entry:last");
+            if (projects.projects[project].pic.length > 0) {
+                displayAppend(projects.projects[project].pic, HTMLprojectImage, ".project-entry:last");
+            }
+        }
     }
 }
 
 var education = {
+    /*
+    education object
+    */
     "schools": [{
         "school": "UON",
-        "city": "Nottingham",
+        "location": "Nottingham, UK",
         "major": "International Business",
         "graduate": "2013",
         "degree": "Masters"
     }, {
         "school": "UON",
-        "city": "Nottingham",
+        "location": "Nottingham, UK",
         "major": "Maths",
         "graduate": "2012",
         "degree": "Masters"
@@ -130,42 +150,38 @@ var education = {
             "course": "python",
             "date": "2014"
         }, {
-            "school": "Udacity",
+            "school": "Udalocation",
             "course": "front end web developer",
             "date": "2015"
         }
-
-    ]
-}
-if (education.schools.length > 0) {
-    for(school in education.schools) {
-        $("#education").append(HTMLschoolStart);
-        displayAppend(education.schools[school].school, HTMLschoolName, ".education-entry:last");
-        displayAppend(education.schools[school].degree, HTMLschoolDegree, ".education-entry:last");
-        displayAppend(education.schools[school].graduate, HTMLschoolDates, ".education-entry:last");
-        displayAppend(education.schools[school].city, HTMLschoolLocation, ".education-entry:last");
-        displayAppend(education.schools[school].major, HTMLschoolMajor, ".education-entry:last");
+    ],
+    display: function(){
+        if (education.schools.length > 0) {
+            for(school in education.schools) {
+                $("#education").append(HTMLschoolStart);
+                displayAppend(education.schools[school].school, HTMLschoolName, ".education-entry:last");
+                displayAppend(education.schools[school].degree, HTMLschoolDegree, ".education-entry:last");
+                displayAppend(education.schools[school].graduate, HTMLschoolDates, ".education-entry:last");
+                displayAppend(education.schools[school].location, HTMLschoolLocation, ".education-entry:last");
+                displayAppend(education.schools[school].major, HTMLschoolMajor, ".education-entry:last");
+            }
+        }
+        if (education.onlineCourses.length > 0) {
+            $("#education").append(HTMLonlineClasses);
+            for (course in education.onlineCourses) {
+                $("#education").append(HTMLschoolStart);
+                displayAppend(education.onlineCourses[course].course, HTMLonlineTitle, ".education-entry:last");
+                displayAppend(education.onlineCourses[course].school, HTMLonlineSchool, ".education-entry:last");
+                displayAppend(education.onlineCourses[course].date, HTMLonlineDates, ".education-entry:last");
+            }
+        }
     }
 }
 
-if (education.onlineCourses.length > 0) {
-    $("#education").append(HTMLonlineClasses);
-    for (course in education.onlineCourses) {
-        $("#education").append(HTMLschoolStart);
-        displayAppend(education.onlineCourses[course].course, HTMLonlineTitle, ".education-entry:last");
-        displayAppend(education.onlineCourses[course].school, HTMLonlineSchool, ".education-entry:last");
-        displayAppend(education.onlineCourses[course].date, HTMLonlineDates, ".education-entry:last");
-    }
-}
-
-
-
-$(document).click(function(loc) {
-    var x = loc.pageX;
-    var y = loc.pageY;
-    logClicks(x, y);
-});
-
+bio.display();
+work.display();
+projects.display();
+education.display();
 
 function inName(name) {
     console.log(name);
