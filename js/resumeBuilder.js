@@ -13,7 +13,7 @@ function replace(content, target) {
 
 function displayAppend(content, target, place) {
     /*
-    helper function to replace and display the content with append
+    helper function to replace and display the content with append()
     */
     var fomatted = replace(content, target);
     $(place).append(fomatted);
@@ -21,7 +21,7 @@ function displayAppend(content, target, place) {
 
 function displayPrepend(content, target, place) {
     /*
-    helper function to replace and display the content with prepend
+    helper function to replace and display the content with prepend()
     */
     var fomatted = replace(content, target);
     $(place).prepend(fomatted);
