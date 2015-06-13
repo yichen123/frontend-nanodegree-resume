@@ -31,7 +31,7 @@ var bio = {
     /*
     bio object
     */
-    "name": "Chen YI",
+    "name": "Chen Yi",
     "role": "fresher web developer",
     "contacts": {
         "mobile": "000-0000-0000",
@@ -183,13 +183,11 @@ work.display();
 projects.display();
 education.display();
 
-function inName(name) {
-    console.log(name);
+function inName() {
     var names = name.trim().split(" ");
-    console.log(names);
     var firstName = names[0].slice(0, 1).toUpperCase() + names[0].slice(1).toLowerCase();
     var lastName = names[1].toUpperCase();
     return firstName + " " + lastName;
 }
-
+var name = $("#name").text();
 $("#main").append(internationalizeButton);
