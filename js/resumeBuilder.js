@@ -182,6 +182,9 @@ bio.display();
 work.display();
 projects.display();
 education.display();
+$('#mapDiv').append(googleMap);
+
+
 
 function inName() {
     var names = name.trim().split(" ");
