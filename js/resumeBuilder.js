@@ -89,6 +89,28 @@ if (works.length > 0) {
 }
 
 
+var projects = [{
+    "title": "HomePage",
+    "date": "May, 2015",
+    "description": "I built a homepage to display my projects of the Nanodegree course in this project. I learnt how to use html5 and css to build a basic website framework.",
+    "pic": "images/project1.png"
+}, {
+    "title": "Resume",
+    "date": "June, 2015",
+    "description": "This project is to build this resume that you are looking at. With this project, I learnt the basic of using javascript and jQurry.",
+    "pic": "images/project2.png"
+}]
+
+if (projects.length > 0) {
+    for (project in projects) {
+        $("#projects").append(HTMLprojectStart);
+        displayAppend(projects[project].title, HTMLprojectTitle, ".project-entry:last");
+        displayAppend(projects[project].date, HTMLprojectDates, ".project-entry:last");
+        displayAppend(projects[project].description, HTMLprojectDescription, ".project-entry:last");
+        displayAppend(projects[project].pic, HTMLprojectImage, ".project-entry:last");
+    }
+}
+
 var education = {
     "schools": [{
         "school": "UON",
@@ -136,16 +158,6 @@ if (education.onlineCourses.length > 0) {
     }
 }
 
-
-var projects = [{
-    "title": "HomePage",
-    "date": "May 2015",
-    "description": "I built a homepage to display my projects of the Nanodegree course in this project. I learnt how to use html5 and css to build a basic website framework."
-}, {
-    "title": "Resume",
-    "date": "unknown",
-    "description": "This is the project to build this resume that you are looking. With this project, I learnt the basic of using javascript and jQurry."
-}]
 
 
 $(document).click(function(loc) {
